@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_instagram/config/paths.dart';
 import 'package:flutter_instagram/models/models.dart';
@@ -11,7 +10,6 @@ class AuthRepository extends BaseAuthRepository {
   final auth.FirebaseAuth _firebaseAuth;
 
   @override
-  // TODO: implement user
   Stream<auth.User?> get user => _firebaseAuth.userChanges();
 
   AuthRepository(

@@ -17,21 +17,20 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         super(AuthState.unknown()) {
     _userSubscription =
         _authRepository.user.listen((user) => add(AuthUserChanged(user: user)));
+    on<AuthUserChanged>((event, emit) async {
+      event.user != null
+          ? emit(AuthState.authenticated(user: event.user!))
+          : emit(AuthState.unauthenticated());
+    });
+    on<AuthLogOutRequested>(
+        (event, emit) async => await _authRepository.logOut());
   }
 
-  Stream<AuthState> mapEventToState(AuthEvent event) async* {
-    if (event is AuthUserChanged) {
-      yield* _mapAuthUserChangeToState(event);
-    } else if (event is AuthLogOutRequested) {
-      await _authRepository.logOut();
-    }
-  }
-
-  Stream<AuthState> _mapAuthUserChangeToState(AuthUserChanged event) async* {
-    yield event.user != null
-        ? AuthState.authenticated(user: event.user!)
-        : AuthState.unauthenticated();
-  }
+  // Stream<AuthState> _mapAuthUserChangeToState(AuthUserChanged event) async* {
+  //   yield event.user != null
+  //       ? AuthState.authenticated(user: event.user!)
+  //       : AuthState.unauthenticated();
+  // }
 
   @override
   Future<void> close() {
