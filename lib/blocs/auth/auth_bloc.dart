@@ -26,12 +26,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         (event, emit) async => await _authRepository.logOut());
   }
 
-  // Stream<AuthState> _mapAuthUserChangeToState(AuthUserChanged event) async* {
-  //   yield event.user != null
-  //       ? AuthState.authenticated(user: event.user!)
-  //       : AuthState.unauthenticated();
-  // }
-
   @override
   Future<void> close() {
     _userSubscription.cancel();

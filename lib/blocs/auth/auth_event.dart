@@ -16,7 +16,7 @@ class AuthUserChanged extends AuthEvent {
   const AuthUserChanged({required this.user});
 
   @override
-  List<Object> get props => [user!];
+  List<Object> get props => [];
 }
 
 class AuthLogOutRequested extends AuthEvent {}
