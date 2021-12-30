@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_instagram/enums/enums.dart';
 import 'package:flutter_instagram/screens/nav/cubit/bottom_nav_bar_cubit.dart';
 import 'package:flutter_instagram/screens/nav/widgets/widgets.dart';
+import 'package:flutter_instagram/screens/screens.dart';
 
 class NavScreen extends StatelessWidget {
   static const String routeName = '/nav';

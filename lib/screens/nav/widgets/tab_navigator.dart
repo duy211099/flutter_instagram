@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_instagram/config/custom_router.dart';
 
 import 'package:flutter_instagram/enums/enums.dart';
 import 'package:flutter_instagram/screens/screens.dart';
@@ -21,10 +22,11 @@ class TabNavigator extends StatelessWidget {
     return Navigator(
       key: navigatorKey,
       initialRoute: tabNavigatorRoot,
+      onGenerateRoute: CustomRouter.onGenerateNestedRoute,
       onGenerateInitialRoutes: (_, initialRoute) {
         return [
           MaterialPageRoute(
-            settings: RouteSettings(name: tabNavigatorRoot),
+            settings: const RouteSettings(name: tabNavigatorRoot),
             builder: (context) => routeBuilders[initialRoute]!(context),
           )
         ];

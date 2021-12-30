@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_instagram/screens/login/login_screen.dart';
 
 class FeedScreen extends StatelessWidget {
   static const String routeName = '/feed';
@@ -8,7 +9,18 @@ class FeedScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text('Feed'),
+        child: TextButton(
+          child: Text('Feed'),
+          onPressed: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => Scaffold(
+                    appBar: AppBar(title: Text('Hi')),
+                  ),
+                ));
+          },
+        ),
       ),
     );
   }
