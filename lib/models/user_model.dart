@@ -5,7 +5,7 @@ import 'package:equatable/equatable.dart';
 
 class User extends Equatable {
   final String id;
-  final String userName;
+  final String username;
   final String email;
   final String profileImageUrl;
   final int followers;
@@ -14,7 +14,7 @@ class User extends Equatable {
 
   const User({
     required this.id,
-    required this.userName,
+    required this.username,
     required this.email,
     required this.profileImageUrl,
     required this.followers,
@@ -24,7 +24,7 @@ class User extends Equatable {
 
   static const empty = User(
       id: '',
-      userName: '',
+      username: '',
       email: '',
       profileImageUrl: '',
       followers: 0,
@@ -33,7 +33,7 @@ class User extends Equatable {
 
   User copyWith({
     String? id,
-    String? userName,
+    String? username,
     String? email,
     String? profileImageUrl,
     int? followers,
@@ -42,7 +42,7 @@ class User extends Equatable {
   }) {
     return User(
       id: id ?? this.id,
-      userName: userName ?? this.userName,
+      username: username ?? this.username,
       email: email ?? this.email,
       profileImageUrl: profileImageUrl ?? this.profileImageUrl,
       followers: followers ?? this.followers,
@@ -54,7 +54,7 @@ class User extends Equatable {
   Map<String, dynamic> toDocument() {
     return {
       'id': id,
-      'userName': userName,
+      'username': username,
       'email': email,
       'profileImageUrl': profileImageUrl,
       'followers': followers,
@@ -64,14 +64,15 @@ class User extends Equatable {
   }
 
   factory User.fromDocument(DocumentSnapshot doc) {
+    final data = doc.data()! as Map<String, dynamic>;
     return User(
-      id: doc['id'] ?? '',
-      userName: doc['userName'] ?? '',
-      email: doc['email'] ?? '',
-      profileImageUrl: doc['profileImageUrl'] ?? '',
-      followers: doc['followers']?.toInt() ?? 0,
-      following: doc['following']?.toInt() ?? 0,
-      bio: doc['bio'] ?? '',
+      id: doc.id,
+      username: data['username'] ?? '',
+      email: data['email'] ?? '',
+      profileImageUrl: data['profileImageUrl'] ?? '',
+      followers: data['followers']?.toInt() ?? 0,
+      following: data['following']?.toInt() ?? 0,
+      bio: data['bio'] ?? '',
     );
   }
 
@@ -82,14 +83,14 @@ class User extends Equatable {
 
   @override
   String toString() {
-    return 'User(id: $id, userName: $userName, email: $email, profileImageUrl: $profileImageUrl, followers: $followers, following: $following, bio: $bio)';
+    return 'User(id: $id, username: $username, email: $email, profileImageUrl: $profileImageUrl, followers: $followers, following: $following, bio: $bio)';
   }
 
   @override
   List<Object> get props {
     return [
       id,
-      userName,
+      username,
       email,
       profileImageUrl,
       followers,

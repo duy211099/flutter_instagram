@@ -8,8 +8,8 @@ class UserRepository extends BaseUserRepository {
   final FirebaseFirestore _firebaseFirestore;
 
   UserRepository({
-    required FirebaseFirestore firebaseFirestore,
-  }) : _firebaseFirestore = firebaseFirestore;
+    FirebaseFirestore? firebaseFirestore,
+  }) : _firebaseFirestore = firebaseFirestore ?? FirebaseFirestore.instance;
 
   @override
   Future<User> getUserWithId({required String userId}) async {
